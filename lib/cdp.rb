@@ -2,27 +2,28 @@ require 'rubygems'
 
 module CDP
   class << self
-    attr_accessor :api_endpoint, :api_id, :api_key, :api_options
+    attr_accessor :host, :path, :port, :proxy_host, :user, :password, :use_ssl, :timeout
 
-    # Specifies the login and url for making requests
+    # Configures base data for making requests.
     #
-    # example:
+    # Example:
     #
-    #   Solusvm.config('id', 'key', :url => 'http://www.example.com/api', :logger => RAILS_LOGGER, :logger_method => :log_info)
-    #
-    # Options:
-    # * <tt>:logger</tt> - Log object used for logging API responses
-    # * <tt>:logger_method</tt> - The method that performs the logging on the Log object
-    def config(api_id, api_key, options={})
-      @api_id       = api_id
-      @api_key      = api_key
-      @api_endpoint = URI.parse(options.delete(:url))
-      @api_options  = options
+    #   CDP.config do |c|
+    #     c.host       = configuration[:host]
+    #     c.path       = configuration[:path]
+    #     c.port       = configuration[:port]
+    #     c.proxy_host = configuration[:proxy_host]
+    #     c.user       = configuration[:user]
+    #     c.password   = configuration[:password]
+    #     c.use_ssl    = configuration[:use_ssl]
+    #     c.timeout    = configuration[:timeout]
+    #   end
+    def config
+      yield(self)
     end
   end
 end
 
 require 'cdp/exceptions'
-require 'cdp/hash'
 require 'cdp/base'
-require 'cdp/general'
+require 'cdp/server'
