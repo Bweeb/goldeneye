@@ -11,8 +11,8 @@ module CDP
     # This accept the same options as CDP.config.
     def initialize(options = {})
       self.host       = CDP.host
-      self.path       = CDP.path
-      self.port       = CDP.port
+      self.path       = CDP.path || "xmlrpc"
+      self.port       = CDP.port || 8084
       self.proxy_host = CDP.proxy_host
       self.user       = CDP.user
       self.password   = CDP.password
