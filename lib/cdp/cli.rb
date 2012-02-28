@@ -1,5 +1,6 @@
 require 'cdp'
 require 'thor'
+require 'cdp/version'
 require 'cdp/cli/base_cli'
 # require 'cdp/cli/server_cli'
 
