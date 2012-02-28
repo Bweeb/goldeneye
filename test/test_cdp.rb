@@ -3,6 +3,7 @@ require 'helper'
 class TestCDP < Test::Unit::TestCase
   def test_config
     configuration =  {
+      :logger => "thelogger",
       :host => "thehost",
       :path => "thepath",
       :port => "theport",
@@ -13,16 +14,9 @@ class TestCDP < Test::Unit::TestCase
       :timeout => "thetimeout"
     }
 
-    CDP.config do |cdp|
-      cdp.host       = configuration[:host]
-      cdp.path       = configuration[:path]
-      cdp.port       = configuration[:port]
-      cdp.proxy_host = configuration[:proxy_host]
-      cdp.user       = configuration[:user]
-      cdp.password   = configuration[:password]
-      cdp.use_ssl    = configuration[:use_ssl]
-      cdp.timeout    = configuration[:timeout]
-    end
+    Logging.expects(:logger).with("thelogger").returns(:thelogger)
+
+    CDP.config(configuration)
 
     assert_equal configuration[:host], CDP.host
     assert_equal configuration[:path], CDP.path
@@ -32,5 +26,6 @@ class TestCDP < Test::Unit::TestCase
     assert_equal configuration[:password], CDP.password
     assert_equal configuration[:use_ssl], CDP.use_ssl
     assert_equal configuration[:timeout], CDP.timeout
+    assert_equal :thelogger, CDP.logger
   end
 end

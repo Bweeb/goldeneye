@@ -1,4 +1,5 @@
-require 'rubygems'
+require "rubygems"
+require "logging"
 
 module CDP
   class << self
@@ -8,18 +9,31 @@ module CDP
     #
     # Example:
     #
-    #   CDP.config do |c|
-    #     c.host       = configuration[:host]
-    #     c.path       = configuration[:path]
-    #     c.port       = configuration[:port]
-    #     c.proxy_host = configuration[:proxy_host]
-    #     c.user       = configuration[:user]
-    #     c.password   = configuration[:password]
-    #     c.use_ssl    = configuration[:use_ssl]
-    #     c.timeout    = configuration[:timeout]
-    #   end
-    def config
-      yield(self)
+    #   CDP.config(
+    #     :logger     => mylogger,
+    #     :host       => configuration[:host],
+    #     :path       => configuration[:path],
+    #     :port       => configuration[:port],
+    #     :proxy_host => configuration[:proxy_host],
+    #     :user       => configuration[:user],
+    #     :password   => configuration[:password],
+    #     :use_ssl    => configuration[:use_ssl],
+    #     :timeout    => configuration[:timeout]
+    #   )
+    def config(options = {})
+      logger(options.delete(:logger))
+
+      options.each do |key, value|
+        send("#{key}=", value) if respond_to?("#{key}=")
+      end
+    end
+
+    def logger(logger = nil)
+      if logger
+        @logger = Logging.logger(logger)
+      end
+
+      @logger ||= Logging.logger(STDOUT)
     end
   end
 end
