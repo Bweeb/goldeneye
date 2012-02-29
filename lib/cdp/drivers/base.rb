@@ -1,14 +1,12 @@
 module CDP
   module Drivers
     class Base
-
-      attr_accessor :url, :user, :password, :logger
+      attr_accessor :url, :user, :password
 
       def initialize(service, options = {})
         @url      = "#{(options[:url] || CDP.url)}/#{service}?wsdl"
         @user     = options[:user] || CDP.user
         @password = options[:password] || CDP.password
-        @logger   = options[:logger] || CDP.logger
       end
 
       def call(method, *args)

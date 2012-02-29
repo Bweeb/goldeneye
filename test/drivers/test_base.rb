@@ -6,8 +6,7 @@ class TestDriversBase < Test::Unit::TestCase
     @configuration = {
       :url => "theurl#{rand(1)}",
       :user => "theuser#{rand(1)}",
-      :password => "thepassword#{rand(1)}",
-      :logger => "theusessl#{rand(1)}"
+      :password => "thepassword#{rand(1)}"
     }
 
     @driver = CDP::Drivers::Base.new(:theservice)
@@ -20,7 +19,6 @@ class TestDriversBase < Test::Unit::TestCase
     assert_equal "#{@configuration[:url]}/theservice?wsdl", @driver.url
     assert_equal @configuration[:user], @driver.user
     assert_equal @configuration[:password], @driver.password
-    assert_equal @configuration[:logger], @driver.logger
   end
 
   def test_initialize_with_config
@@ -29,7 +27,6 @@ class TestDriversBase < Test::Unit::TestCase
     assert_equal "#{@configuration[:url]}/aservice?wsdl", @driver.url
     assert_equal @configuration[:user], @driver.user
     assert_equal @configuration[:password], @driver.password
-    assert_equal @configuration[:logger], @driver.logger
   end
 
   def test_call

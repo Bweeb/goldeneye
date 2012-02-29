@@ -11,7 +11,7 @@ module CDP
     def initialize(options = {})
       options[:service] = service
 
-      @driver = (CDP.driver || Drivers::Savon).new(options)
+      @driver = CDP.driver.new(options)
     end
 
     # Prepares and sends the API request to the configured server.
