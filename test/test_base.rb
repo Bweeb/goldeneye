@@ -8,7 +8,7 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_initialize_with_default_options
-    CDP::Drivers::Savon.expects(:new).with({:my => :option, :service => :theservice}).returns(:driver)
+    CDP::Drivers::Savon.expects(:new).with(:theservice, {:my => :option}).returns(:driver)
 
     assert_equal :driver, CDP::Base.new({:my => :option}).driver
   end

@@ -9,9 +9,7 @@ module CDP
     # Initializes the api using CDP default options or the received options.
     # This accept the same options as CDP.config.
     def initialize(options = {})
-      options[:service] = service
-
-      @driver = CDP.driver.new(options)
+      @driver = CDP.driver.new(service, options)
     end
 
     # Prepares and sends the API request to the configured server.
@@ -35,5 +33,11 @@ module CDP
     def service
       raise NotImplementedError
     end
+  end
+end
+
+class CDP::Sample < CDP::Base
+  def service
+    "Agent"
   end
 end

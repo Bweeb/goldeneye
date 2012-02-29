@@ -3,28 +3,33 @@ require 'helper'
 class TestDriversSavon < Test::Unit::TestCase
 
   def setup
-    # @driver = CDP::Drivers::XMLRPC.new
+    @configuration = {
+      :url => "theurl",
+      :user => "theuser",
+      :password => "thepassword"
+    }
+
+    @wsdl = stub(:document= => nil)
+    @auth = stub(:basic => nil)
+    @http = stub(:auth => @auth)
+    @client = stub
+    Savon::Client.stubs(:new).yields(@wsdl, @http).returns(@client)
+
+    @driver = CDP::Drivers::Savon.new(:theservice, @configuration)
   end
 
   def test_initialize
-    # XMLRPC::Client.expects(:new).with(
-    #   @configuration[:host],
-    #   @configuration[:path],
-    #   @configuration[:port],
-    #   @configuration[:proxy_host],
-    #   @configuration[:proxy_port],
-    #   @configuration[:user],
-    #   @configuration[:password],
-    #   @configuration[:use_ssl],
-    #   @configuration[:timeout]
-    # ).returns(:theapi)
+    @wsdl.expects(:document=).with("theurl/theservice?wsdl")
+    @auth.expects(:basic).with(@configuration[:user], @configuration[:password])
+    @driver = CDP::Drivers::Savon.new(:theservice, @configuration)
 
-    # @driver = CDP::Drivers::XMLRPC.new(@configuration)
-    # assert_equal :theapi, @driver.api
+    assert_equal @client, @driver.api
   end
 
   def test_call
-    # @driver.api.expects(:call).with("themethod", 1, 2, 3).returns(:response)
-    # assert_equal :response, @driver.call("themethod", 1, 2, 3)
+    @response = stub(:to_hash => {:the => :response})
+    @client.expects(:request).with("themethod", {:the => :options}).returns(@response)
+
+    assert_equal ({:the => :response}), @driver.call("themethod", {:the => :options})
   end
 end

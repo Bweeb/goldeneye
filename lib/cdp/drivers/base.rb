@@ -9,7 +9,7 @@ module CDP
         @password = options[:password] || CDP.password
       end
 
-      def call(method, *args)
+      def call(method, args = {})
         raise NotImplementedError
       end
     end

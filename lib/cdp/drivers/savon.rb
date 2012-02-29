@@ -3,24 +3,14 @@ require "savon"
 module CDP
   module Drivers
     class Savon < Base
-      class << self
-        def log(log)
-          ::Savon.log = log
-        end
-
-        def logger(logger)
-          ::Savon.logger = logger
-        end
-
-        def log_level(level)
-          ::Savon.log_level = log_level
-        end
-      end
-
       attr_reader :api
 
       def initialize(service, options = {})
         super
+
+        ::Savon.configure do |config|
+          config.soap_version = 1  # use SOAP 1.2
+        end
 
         @api = ::Savon::Client.new do |wsdl, http|
           wsdl.document = url
@@ -30,7 +20,9 @@ module CDP
 
       def call(method, args = {})
         begin
-          api.request(method, args)
+          api.request(method) do |soap|
+            soap.body = args
+          end.to_hash["#{method}_response".to_sym]
         rescue ::Savon::Error => e
           raise CDPError.new(e)
         end
