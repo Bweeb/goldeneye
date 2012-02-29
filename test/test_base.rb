@@ -7,7 +7,7 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_initialize_with_default_options
-    CDP::Drivers::XMLRPC.expects(:new).with(:options).returns(:driver)
+    CDP::Drivers::Savon.expects(:new).with(:options).returns(:driver)
     assert_equal :driver, CDP::Base.new(:options).driver
   end
 

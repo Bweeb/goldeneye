@@ -9,7 +9,7 @@ module CDP
     # Initializes the api using CDP default options or the received options.
     # This accept the same options as CDP.config.
     def initialize(options = {})
-      @driver = Drivers::XMLRPC.new(options)
+      @driver = (CDP.driver || Drivers::Savon).new(options)
     end
 
     # Prepares and sends the API request to the configured server.
@@ -26,10 +26,7 @@ module CDP
     # If the remote procedure returned a fault-structure, then a CDP::CDPError exception
     # is raised.
     def perform_request(method, *args)
-      CDP.logger.debug("[Start] => #{method} : #{args.to_s}")
-      result = driver.call(method, *args)
-      CDP.logger.debug("[End] => #{method} : #{result.to_s}")
-      result
+      driver.call(method, *args)
     end
   end
 end

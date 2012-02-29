@@ -9,8 +9,6 @@ end
 require 'cdp'
 require 'mocha'
 
-CDP.logger.level = :info
-
 class Test::Unit::TestCase
 
   def cli_expand_base_arguments(options)

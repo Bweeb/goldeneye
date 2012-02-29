@@ -1,46 +1,29 @@
 require "rubygems"
-require "logging"
+require "cdp/exceptions"
+require "cdp/base"
+require "cdp/drivers/base"
+require "cdp/drivers/savon"
 
 module CDP
   class << self
-    attr_accessor :host, :path, :port, :proxy_host, :proxy_port, :user, :password, :use_ssl, :timeout
+    attr_accessor :url, :user, :password, :logger, :driver
 
     # Configures base data for making requests.
     #
     # Example:
     #
     #   CDP.config(
-    #     :logger     => mylogger,
-    #     :host       => configuration[:host],
-    #     :path       => configuration[:path],
-    #     :port       => configuration[:port],
-    #     :proxy_host => configuration[:proxy_host],
-    #     :proxy_port => configuration[:proxy_port],
+    #     :logger     => STDOUT,
+    #     :url        => configuration[:url],
     #     :user       => configuration[:user],
-    #     :password   => configuration[:password],
-    #     :use_ssl    => configuration[:use_ssl],
-    #     :timeout    => configuration[:timeout]
+    #     :password   => configuration[:password]
     #   )
     def config(options = {})
-      logger(options.delete(:logger))
-
-      options.each do |key, value|
-        send("#{key}=", value) if respond_to?("#{key}=")
-      end
-    end
-
-    def logger(logger = nil)
-      if logger
-        @logger = Logging.logger(logger)
-      end
-
-      @logger ||= Logging.logger(STDOUT)
+      @url      = options[:url]
+      @user     = options[:user]
+      @password = options[:password]
+      @logger   = options[:logger]
+      @driver   = options[:driver]
     end
   end
 end
-
-require 'cdp/exceptions'
-require 'cdp/base'
-require 'cdp/server'
-require 'cdp/drivers/base_driver'
-require 'cdp/drivers/xmlrpc_driver'
