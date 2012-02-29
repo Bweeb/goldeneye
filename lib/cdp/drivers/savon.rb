@@ -1,3 +1,5 @@
+require "savon"
+
 module CDP
   module Drivers
     class Savon < Base
@@ -10,6 +12,9 @@ module CDP
 
         # # hack to disable ssl certificate check
         # @api.instance_variable_get(:@http).instance_variable_set(:@verify_mode, OpenSSL::SSL::VERIFY_NONE)
+        @api = ::Savon::Client.new do
+          wsdl.document = "http://service.example.com?wsdl"
+        end
       end
 
       def call(method, *args)

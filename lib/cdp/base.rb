@@ -9,6 +9,8 @@ module CDP
     # Initializes the api using CDP default options or the received options.
     # This accept the same options as CDP.config.
     def initialize(options = {})
+      options[:service] = service
+
       @driver = (CDP.driver || Drivers::Savon).new(options)
     end
 
@@ -27,6 +29,11 @@ module CDP
     # is raised.
     def perform_request(method, *args)
       driver.call(method, *args)
+    end
+
+    # Services classes should implement this class with the proper CDP service name.
+    def service
+      raise NotImplementedError
     end
   end
 end
