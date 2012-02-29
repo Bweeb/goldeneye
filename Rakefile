@@ -39,5 +39,10 @@ rescue LoadError
   end
 end
 
+desc "Open an irb session preloaded with this library"
+task :console do
+  sh "irb -rubygems -r ./lib/cdp.rb"
+end
+
 task :default => :test
 task :spec => :test
