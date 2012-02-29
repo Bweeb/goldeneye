@@ -47,6 +47,7 @@ module CDP
     class_option :api_path, :type => :string, :desc => "API PATH; Default to xmlrpc.", :aliases => ["-PA", "--api-path"]
     class_option :api_port, :type => :numeric, :desc => "API PORT; Default to 8084.", :aliases => ["-PT", "--api-port"]
     class_option :api_proxy_host, :type => :string, :desc => "API PROXY HOST;", :aliases => ["-PH", "--api-proxy-host"]
+    class_option :api_proxy_port, :type => :numeric, :desc => "API PROXY PORT;", :aliases => ["-PP", "--api-proxy-port"]
     class_option :api_use_ssl, :desc => "API USE SSL;", :aliases => ["-S", "--api-use-ssl"]
     class_option :api_timeout, :type => :numeric, :desc => "API TIMEOUT;", :aliases => ["-T", "--api-timeout"]
 
@@ -70,7 +71,8 @@ module CDP
         :host => present_or_exit(:api_host, :host, "api_host required"),
         :path => options_or_default(:api_path, :path),
         :port => options_or_default(:api_port, :port),
-        :proxy_host => options_or_default(:api_host, :host),
+        :proxy_host => options_or_default(:api_host, :proxy_host),
+        :proxy_port => options_or_default(:api_port, :proxy_port),
         :user => present_or_exit(:api_username, :username, "api_username required"),
         :password => present_or_exit(:api_password, :password, "api_password required"),
         :use_ssl => options_or_default(:api_use_ssl, :ssl),

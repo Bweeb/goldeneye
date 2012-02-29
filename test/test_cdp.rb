@@ -8,6 +8,7 @@ class TestCDP < Test::Unit::TestCase
       :path => "thepath",
       :port => "theport",
       :proxy_host => "theproxyhost",
+      :proxy_port => "theproxyport",
       :user => "theuser",
       :password => "thepassword",
       :use_ssl => "theusessl",
@@ -22,6 +23,7 @@ class TestCDP < Test::Unit::TestCase
     assert_equal configuration[:path], CDP.path
     assert_equal configuration[:port], CDP.port
     assert_equal configuration[:proxy_host], CDP.proxy_host
+    assert_equal configuration[:proxy_port], CDP.proxy_port
     assert_equal configuration[:user], CDP.user
     assert_equal configuration[:password], CDP.password
     assert_equal configuration[:use_ssl], CDP.use_ssl
