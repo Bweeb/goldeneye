@@ -8,8 +8,6 @@ class TestBaseCli < Test::Unit::TestCase
     # something was moved around.
     Mocha::Configuration.prevent(:stubbing_non_existent_method)
 
-    CDP::Base.any_instance.stubs(:service).returns(:theservice)
-
     @base_cli = CDP::BaseCli.new
     @api      = CDP::Base.new
 

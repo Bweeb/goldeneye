@@ -1,13 +1,20 @@
 module CDP
   # CDP::Base is the main class for mapping API resources as subclasses.
   class Base
+    class << self
+      # Returns the service name. By default it is infered from the class name.
+      # E.g.: A "CDP::Agent" class will have an "Agent" service
+      def service
+        name.split("::").last
+      end
+    end
 
     attr_reader :driver
 
     # Initializes the api using CDP default options or the received options.
     # This accept the same options as CDP.config.
     def initialize(options = {})
-      @driver = CDP.driver.new(service, options)
+      @driver = CDP.driver.new(self.class.service, options)
     end
 
     # Prepares and sends the API request to the configured server.
@@ -29,11 +36,6 @@ module CDP
       parse_response(method, body, force_array)
     end
 
-    # Services classes should implement this class with the proper CDP service name.
-    def service
-      raise NotImplementedError
-    end
-
     private
 
     # Converts the XML response to a Hash
@@ -45,17 +47,5 @@ module CDP
       method_response = "#{method}Response"
       XmlSimple.xml_in(body, 'ForceArray' => force_array)["Body"][method_response]["return"]
     end
-  end
-end
-
-class CDP::User < CDP::Base
-  def service
-    "User"
-  end
-end
-
-class CDP::Agent < CDP::Base
-  def service
-    "Agent"
   end
 end
