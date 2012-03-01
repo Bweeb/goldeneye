@@ -30,3 +30,6 @@ module R1
     end
   end
 end
+
+require "r1/services/cdp"
+require "r1/services/disk_safe"
