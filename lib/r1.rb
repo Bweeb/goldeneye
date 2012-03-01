@@ -1,11 +1,11 @@
 require "rubygems"
 require "xmlsimple"
-require "cdp/exceptions"
-require "cdp/base"
-require "cdp/drivers/base"
-require "cdp/drivers/savon"
+require "r1/exceptions"
+require "r1/base"
+require "r1/drivers/base"
+require "r1/drivers/savon"
 
-module CDP
+module R1
   class << self
     attr_accessor :url, :user, :password
     attr_reader :driver
@@ -18,7 +18,7 @@ module CDP
     #
     # Example:
     #
-    #   CDP.config(
+    #   R1.config(
     #     :url        => configuration[:url],
     #     :user       => configuration[:user],
     #     :password   => configuration[:password]

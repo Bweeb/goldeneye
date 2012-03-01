@@ -6,7 +6,7 @@ begin
 rescue LoadError
 end
 
-require 'cdp'
+require 'r1'
 require 'mocha'
 
 class Test::Unit::TestCase

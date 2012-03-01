@@ -1,18 +1,18 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "cdp/version"
+require "r1/version"
 
 Gem::Specification.new do |s|
-  s.name    = %q{CDP}
-  s.version = CDP::VERSION
+  s.name    = %q{R1}
+  s.version = R1::VERSION
 
-  s.authors     = ["Justin Mazzi"]
-  s.email       = ["jmazzi@gmail.com"]
+  s.authors     = ["Fabio Kreusch"]
+  s.email       = ["fabiokr@gmail.com"]
   s.homepage    = "http://www.site5.com"
   s.summary     = "Wrapper for the R1Soft CDP API"
-  s.description = "CDP allows for easy interaction with the R1Soft CDP API."
+  s.description = "R1 allows for easy interaction with the R1Soft CDP API."
 
-  s.rubyforge_project = "cdp"
+  s.rubyforge_project = "r1"
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables       = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }

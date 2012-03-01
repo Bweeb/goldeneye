@@ -3,17 +3,17 @@ require 'helper'
 class TestBase < Test::Unit::TestCase
 
   def setup
-    @api = CDP::Base.new
+    @api = R1::Base.new
   end
 
   def test_class_service
-    assert_equal "Base", CDP::Base.service
+    assert_equal "Base", R1::Base.service
   end
 
   def test_initialize_with_default_options
-    CDP::Drivers::Savon.expects(:new).with("Base", {:my => :option}).returns(:driver)
+    R1::Drivers::Savon.expects(:new).with("Base", {:my => :option}).returns(:driver)
 
-    assert_equal :driver, CDP::Base.new({:my => :option}).driver
+    assert_equal :driver, R1::Base.new({:my => :option}).driver
   end
 
   def test_perform_request

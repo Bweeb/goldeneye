@@ -1,16 +1,16 @@
-CDP [![CDP Build Status][Build Icon]][Build Status]
+R1 [![R1 Build Status][Build Icon]][Build Status]
 ===========================================================
 
-CDP allows for easy interaction with the [R1Soft CDP API][].
+R1 allows for easy interaction with the [R1Soft CDP API][].
 This library was first created for internal use at [Site5 LLC][].
 
-CDP has been tested on MRI 1.8.7, MRI 1.9.2, MRI 1.9.3 Preview 1,
+R1 has been tested on MRI 1.8.7, MRI 1.9.2, MRI 1.9.3 Preview 1,
 Rubinius 2.0, and JRuby 1.6.2.
 
 [Site5 LLC]: http://www.site5.com
 [R1Soft CDP API]: http://wiki.r1soft.com/display/R1D/Documentation
-[Build Status]: http://travis-ci.org/site5/cdp
-[Build Icon]: https://secure.travis-ci.org/site5/cdp.png?branch=master
+[Build Status]: http://travis-ci.org/site5/r1
+[Build Icon]: https://secure.travis-ci.org/site5/r1.png?branch=master
 
 Basic Examples
 --------------
@@ -36,12 +36,12 @@ Requirements
 Documentation
 -------------
 
-* http://cdp.rubyforge.org/cdp/
+* http://r1.rubyforge.org/r1/
 
 Installation
 ------------
 
-    gem install cdp
+    gem install r1
 
 Contributors
 ------------

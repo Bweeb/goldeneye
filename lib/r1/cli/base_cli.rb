@@ -2,7 +2,7 @@ require 'yaml'
 require 'thor'
 require 'thor/group'
 
-module CDP
+module R1
   class BaseCli < Thor
     include Thor::Actions
 
@@ -59,7 +59,7 @@ module CDP
     protected
 
     def configure
-      CDP.config(
+      R1.config(
         :url => present_or_exit(:api_url, :url, "api_url required"),
         :user => present_or_exit(:api_username, :username, "api_username required"),
         :password => present_or_exit(:api_password, :password, "api_password required")

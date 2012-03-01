@@ -1,5 +1,5 @@
 require 'helper'
-require 'cdp/cli'
+require 'r1/cli'
 
 class TestBaseCli < Test::Unit::TestCase
 
@@ -8,8 +8,8 @@ class TestBaseCli < Test::Unit::TestCase
     # something was moved around.
     Mocha::Configuration.prevent(:stubbing_non_existent_method)
 
-    @base_cli = CDP::BaseCli.new
-    @api      = CDP::Base.new
+    @base_cli = R1::BaseCli.new
+    @api      = R1::Base.new
 
     @base_cli.stubs(:api).returns(@api)
   end

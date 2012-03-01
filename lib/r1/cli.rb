@@ -1,16 +1,15 @@
-require 'cdp'
 require 'thor'
-require 'cdp/version'
-require 'cdp/cli/base_cli'
-# require 'cdp/cli/server_cli'
+require 'r1'
+require 'r1/version'
+require 'r1/cli/base_cli'
 
-module CDP
+module R1
   class Cli < Thor
     # register(ServerCli,  'server', 'server <command>', 'Server commands')
 
     desc "version", "Outputs the current program version"
     def version
-      say CDP::VERSION
+      say R1::VERSION
     end
   end
 end

@@ -9,12 +9,12 @@ class TestDriversBase < Test::Unit::TestCase
       :password => "thepassword#{rand(1)}"
     }
 
-    @driver = CDP::Drivers::Base.new(:theservice)
+    @driver = R1::Drivers::Base.new(:theservice)
   end
 
   def test_initialize_with_default_options
-    CDP.config(@configuration)
-    @driver = CDP::Drivers::Base.new(:theservice)
+    R1.config(@configuration)
+    @driver = R1::Drivers::Base.new(:theservice)
 
     assert_equal "#{@configuration[:url]}/theservice?wsdl", @driver.url
     assert_equal @configuration[:user], @driver.user
@@ -22,7 +22,7 @@ class TestDriversBase < Test::Unit::TestCase
   end
 
   def test_initialize_with_config
-    @driver = CDP::Drivers::Base.new(:aservice, @configuration)
+    @driver = R1::Drivers::Base.new(:aservice, @configuration)
 
     assert_equal "#{@configuration[:url]}/aservice?wsdl", @driver.url
     assert_equal @configuration[:user], @driver.user

@@ -3,6 +3,6 @@
 $:.unshift(File.join(File.dirname(__FILE__), "/../lib"))
 
 require "thor"
-require "cdp/cli"
+require "r1/cli"
 
-CDP::Cli.start
+R1::Cli.start
