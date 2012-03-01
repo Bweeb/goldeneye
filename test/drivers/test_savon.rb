@@ -9,10 +9,11 @@ class TestDriversSavon < Test::Unit::TestCase
       :password => "thepassword"
     }
 
-    @wsdl = stub(:document= => nil)
-    @auth = stub(:basic => nil)
-    @http = stub(:auth => @auth)
+    @wsdl   = stub(:document= => nil)
+    @auth   = stub(:basic => nil)
+    @http   = stub(:auth => @auth)
     @client = stub
+
     Savon::Client.stubs(:new).yields(@wsdl, @http).returns(@client)
 
     @driver = CDP::Drivers::Savon.new(:theservice, @configuration)
@@ -27,9 +28,12 @@ class TestDriversSavon < Test::Unit::TestCase
   end
 
   def test_call
-    @response = stub(:to_hash => {:the => :response})
-    @client.expects(:request).with("themethod", {:the => :options}).returns(@response)
+    @soap     = stub()
+    @response = stub(:to_xml => "thexml")
 
-    assert_equal ({:the => :response}), @driver.call("themethod", {:the => :options})
+    @soap.expects("body=").with("<the>options</the>")
+    @client.expects(:request).with("themethod").yields(@soap).returns(@response)
+
+    assert_equal "thexml", @driver.call("themethod", {:the => :options})
   end
 end

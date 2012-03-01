@@ -1,4 +1,5 @@
 require "rubygems"
+require "xmlsimple"
 require "cdp/exceptions"
 require "cdp/base"
 require "cdp/drivers/base"

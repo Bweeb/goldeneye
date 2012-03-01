@@ -21,8 +21,10 @@ module CDP
       def call(method, args = {})
         begin
           api.request(method) do |soap|
-            soap.body = args
-          end.to_hash["#{method}_response".to_sym]
+            # Manually uses Gyoku to generate the body xml becase by default Savon appends the
+            # namespace to the parameters and that does not work with the CDP api
+            soap.body = Gyoku.xml(args)
+          end.to_xml
         rescue ::Savon::Error => e
           raise CDPError.new(e)
         end
