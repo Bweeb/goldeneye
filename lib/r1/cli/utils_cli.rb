@@ -3,8 +3,7 @@ module R1
 
     ONE_GB = 1073741824.0
 
-    desc "list_cdps_devices", "Lists CDPs devices and its memory information; This should be called
-                              under the main CDP server."
+    desc "list_cdps_devices", "Lists CDPs devices and its memory information"
     def list_cdps_devices
       cdps = cdp_api.get_registered_cdps.sort{|cdp1, cdp2| cdp1["name"] <=> cdp2["name"]}.uniq
 

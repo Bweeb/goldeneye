@@ -15,23 +15,52 @@ Rubinius 2.0, and JRuby 1.6.2.
 Basic Examples
 --------------
 
-    # TODO
+    R1.config(
+      :url        => "http://my.cdp.server:7080",
+      :user       => "theusername",
+      :password   => "thepassword"
+     )
 
+    cdp = R1::CDP.new
+    cdp.get_registered_cdps
 
 Command Line Usage
 ------------------
 
-    # TODO
+    Tasks:
+      r1 help [TASK]      # Describe available tasks or one specific task
+      r1 utils <command>  # Utils commands
+      r1 version          # Outputs the current program version
+
+      r1 utils help [COMMAND]     # Describe subcommands or one specific subcommand
+      r1 utils list_cdps_devices  # Lists CDPs devices and its memory information
+
+    Options:
+      -U, --api-username, [--api-username=API_USERNAME]  # API USERNAME; Required.
+      -P, --api-password, [--api-password=API_PASSWORD]  # API PASSWORD; Required.
+      -H, --api-url, [--api-url=API_URL]                 # API URL; Required.
+      -d, --debug, [--debug=DEBUG]                       # API DEBUG; False by default
+
+    To check the available options for a given action, you can execute the following command:
+
+        r1 utils help list_cdps_devices
 
 Default Config for Command Line
 --------------------------------
 
-    # TODO
+The command line utility, r1, will look for a .r1.yml file in ~/. You can specify some defaults.
+
+    ~/.r1.yml
+    username: theusername
+    password: thepassword
+    url: "http://my.cdp.server:7080" # URL to the API endpoint
 
 Requirements
 ------------
 
-    # TODO
+* logging
+* xml-simple
+* savon
 
 Documentation
 -------------
