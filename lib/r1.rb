@@ -45,4 +45,5 @@ module R1
 end
 
 require "r1/services/cdp"
+require "r1/services/storage_disk"
 require "r1/services/disk_safe"
