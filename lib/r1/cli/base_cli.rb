@@ -26,7 +26,7 @@ module R1
       # Retrieves default options coming from a configuration file, if any.
       def default_option(key)
         @@yaml ||= begin
-          file = File.join(File.expand_path(ENV['HOME']), '.cdp.yml')
+          file = File.join(File.expand_path(ENV['HOME']), '.r1.yml')
           if File.exists?(file)
             YAML::load(File.open(file))
           else

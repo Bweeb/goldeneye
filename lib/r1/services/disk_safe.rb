@@ -1,14 +1,9 @@
 module R1
   class DiskSafe < Base
 
-    # Returns the list of all disk safe UUIDs the user has access to.
-    def get_disk_safe_ids
-      perform_request("getDiskSafeIDs", {}, "return")
-    end
-
-    # Get devices for a specified disk safe.
-    def get_stored_devices_for_disk_safe(id)
-      perform_request("getStoredDevicesForDiskSafe", {"diskSafe" => {"id" => id}}, "return")
+    # Retrieve a list of Data Center Console (DCC) registered CDP Servers.
+    def get_disk_safes
+      perform_request("getDiskSafes", {}, ["return", "deviceList"])
     end
 
   end

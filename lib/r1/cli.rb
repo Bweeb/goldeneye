@@ -2,10 +2,11 @@ require 'thor'
 require 'r1'
 require 'r1/version'
 require 'r1/cli/base_cli'
+require 'r1/cli/utils_cli'
 
 module R1
   class Cli < Thor
-    # register(ServerCli,  'server', 'server <command>', 'Server commands')
+    register(UtilsCli,  'utils', 'utils <command>', 'Utils commands')
 
     desc "version", "Outputs the current program version"
     def version
