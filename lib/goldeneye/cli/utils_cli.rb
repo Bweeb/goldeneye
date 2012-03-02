@@ -18,7 +18,7 @@ module Goldeneye
           output "  DiskSafe #{disk_safe["description"]}:"
           disk_safe["deviceList"].sort{|dev1, dev2| dev1["devicePath"] <=> dev2["devicePath"]}.each do |device|
             free_space = (device["totalBlocks"].to_i - device["allocatedBlocks"].to_i) * device["blockSize"].to_i
-            free_space = (free_space / ONE_GB).round(1)
+            free_space = ((free_space / ONE_GB) * 10).round.to_f / 10 # Ruby 1.8 compatible round
             output "    #{device["devicePath"]}: #{free_space} GB"
           end
         end
