@@ -1,4 +1,5 @@
 require "rubygems"
+require "logging"
 require "xmlsimple"
 require "r1/exceptions"
 require "r1/base"
@@ -27,6 +28,18 @@ module R1
       @url      = options[:url]
       @user     = options[:user]
       @password = options[:password]
+    end
+
+    # Gets or sets the logger.
+    # Log level can be set like this:
+    #
+    #    R1.logger.level = :info
+    def logger(output = nil)
+      if output
+        @logger = Logging.logger(output)
+      end
+
+      @logger ||= Logging.logger(STDOUT)
     end
   end
 end

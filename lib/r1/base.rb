@@ -32,8 +32,14 @@ module R1
     # If the remote procedure returned a fault-structure, then a R1::R1Error exception
     # is raised.
     def perform_request(method, options = {}, force_array = false)
-      body = driver.call(method, options)
-      parse_response(method, body, force_array)
+      R1.logger.debug("R1 request for #{self.class.service}::#{method} with: #{options.to_s}")
+
+      body     = driver.call(method, options)
+      response = parse_response(method, body, force_array)
+
+      R1.logger.debug("R1 response: #{response.to_s}")
+
+      response
     end
 
     private

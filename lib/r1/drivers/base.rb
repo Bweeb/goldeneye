@@ -1,6 +1,13 @@
 module R1
   module Drivers
     class Base
+      class << self
+        # Defines if this class will log its interactions
+        def log=(log)
+          raise NotImplementedError
+        end
+      end
+
       attr_accessor :url, :user, :password
 
       def initialize(service, options = {})

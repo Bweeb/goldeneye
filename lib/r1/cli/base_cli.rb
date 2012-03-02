@@ -42,6 +42,16 @@ module R1
     class_option :api_username, :type => :string, :desc => "API USERNAME; Required.",  :aliases => ["-U", "--api-username"]
     class_option :api_password, :type => :string, :desc => "API PASSWORD; Required.", :aliases => ["-P", "--api-password"]
     class_option :api_url,   :type => :string, :desc => "API URL; Required.", :aliases => ["-H", "--api-url"]
+    class_option :debug, :desc => "API DEBUG; False by default", :default => false, :aliases => ["-d", "--debug"]
+
+    def initialize(*args)
+      super(*args)
+
+      unless options[:debug]
+        R1.logger.level = :info
+        R1.driver.log   = false
+      end
+    end
 
     no_tasks do
       def api

@@ -3,6 +3,13 @@ require "savon"
 module R1
   module Drivers
     class Savon < Base
+      class << self
+        def log=(log)
+          ::Savon.log = log
+          ::HTTPI.log = log
+        end
+      end
+
       attr_reader :api
 
       def initialize(service, options = {})

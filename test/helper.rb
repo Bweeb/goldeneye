@@ -9,6 +9,8 @@ end
 require 'r1'
 require 'mocha'
 
+R1.logger.level = :info
+
 class Test::Unit::TestCase
 
   def cli_expand_base_arguments(options)
