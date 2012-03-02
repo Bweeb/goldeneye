@@ -1,5 +1,5 @@
 require 'helper'
-require 'r1/cli'
+require 'goldeneye/cli'
 
 class TestUtilsCli < Test::Unit::TestCase
 
@@ -9,7 +9,7 @@ class TestUtilsCli < Test::Unit::TestCase
     Mocha::Configuration.prevent(:stubbing_non_existent_method)
 
     @cdp_api = stub()
-    R1::CDP.stubs(:new).returns(@cdp_api)
+    Goldeneye::CDP.stubs(:new).returns(@cdp_api)
   end
 
   def test_list_cdps_devices
@@ -30,8 +30,8 @@ class TestUtilsCli < Test::Unit::TestCase
     disk_safe_api_1 = stub(:get_disk_safes => disk_safe_1)
     disk_safe_api_2 = stub(:get_disk_safes => disk_safe_2)
 
-    R1::DiskSafe.expects(:new).with(:url => "http://ip1:port1").returns(disk_safe_api_1)
-    R1::DiskSafe.expects(:new).with(:url => "http://ip2:port2").returns(disk_safe_api_2)
+    Goldeneye::DiskSafe.expects(:new).with(:url => "http://ip1:port1").returns(disk_safe_api_1)
+    Goldeneye::DiskSafe.expects(:new).with(:url => "http://ip2:port2").returns(disk_safe_api_2)
 
     @cdp_api.expects(:get_registered_cdps).returns(cdps)
 
@@ -43,7 +43,7 @@ class TestUtilsCli < Test::Unit::TestCase
     $stdout.expects(:puts).with("  DiskSafe ds2:")
     $stdout.expects(:puts).with("    /cdp2/dev1: 4.7 GB")
 
-    R1::Cli.start(cli_expand_base_arguments([
+    Goldeneye::Cli.start(cli_expand_base_arguments([
       "utils", "list_cdps_devices"
     ]))
   end

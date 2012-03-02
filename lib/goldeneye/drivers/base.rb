@@ -1,4 +1,4 @@
-module R1
+module Goldeneye
   module Drivers
     class Base
       class << self
@@ -11,9 +11,9 @@ module R1
       attr_accessor :url, :user, :password
 
       def initialize(service, options = {})
-        @url      = "#{(options[:url]  || R1.url)}/#{service}?wsdl"
-        @user     = options[:user]     || R1.user
-        @password = options[:password] || R1.password
+        @url      = "#{(options[:url]  || Goldeneye.url)}/#{service}?wsdl"
+        @user     = options[:user]     || Goldeneye.user
+        @password = options[:password] || Goldeneye.password
       end
 
       def call(method, args = {})

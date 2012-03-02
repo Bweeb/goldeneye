@@ -2,7 +2,7 @@ require 'yaml'
 require 'thor'
 require 'thor/group'
 
-module R1
+module Goldeneye
   class BaseCli < Thor
     include Thor::Actions
 
@@ -26,7 +26,7 @@ module R1
       # Retrieves default options coming from a configuration file, if any.
       def default_option(key)
         @@yaml ||= begin
-          file = File.join(File.expand_path(ENV['HOME']), '.r1.yml')
+          file = File.join(File.expand_path(ENV['HOME']), '.goldeneye.yml')
           if File.exists?(file)
             YAML::load(File.open(file))
           else
@@ -48,8 +48,8 @@ module R1
       super(*args)
 
       unless options[:debug]
-        R1.logger.level = :info
-        R1.driver.log   = false
+        Goldeneye.logger.level = :info
+        Goldeneye.driver.log   = false
       end
     end
 
@@ -69,7 +69,7 @@ module R1
     protected
 
     def configure
-      R1.config(
+      Goldeneye.config(
         :url => present_or_exit(:api_url, :url, "api_url required"),
         :user => present_or_exit(:api_username, :username, "api_username required"),
         :password => present_or_exit(:api_password, :password, "api_password required")

@@ -1,4 +1,4 @@
-module R1
+module Goldeneye
   class DiskSafe < Base
 
     # Retrieve a list of Data Center Console (DCC) registered CDP Servers.

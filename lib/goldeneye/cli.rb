@@ -1,16 +1,16 @@
 require 'thor'
-require 'r1'
-require 'r1/version'
-require 'r1/cli/base_cli'
-require 'r1/cli/utils_cli'
+require 'goldeneye'
+require 'goldeneye/version'
+require 'goldeneye/cli/base_cli'
+require 'goldeneye/cli/utils_cli'
 
-module R1
+module Goldeneye
   class Cli < Thor
     register(UtilsCli,  'utils', 'utils <command>', 'Utils commands')
 
     desc "version", "Outputs the current program version"
     def version
-      say R1::VERSION
+      say Goldeneye::VERSION
     end
   end
 end

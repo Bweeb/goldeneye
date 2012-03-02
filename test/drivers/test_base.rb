@@ -9,12 +9,12 @@ class TestDriversBase < Test::Unit::TestCase
       :password => "thepassword#{rand(1)}"
     }
 
-    @driver = R1::Drivers::Base.new(:theservice)
+    @driver = Goldeneye::Drivers::Base.new(:theservice)
   end
 
   def test_initialize_with_default_options
-    R1.config(@configuration)
-    @driver = R1::Drivers::Base.new(:theservice)
+    Goldeneye.config(@configuration)
+    @driver = Goldeneye::Drivers::Base.new(:theservice)
 
     assert_equal "#{@configuration[:url]}/theservice?wsdl", @driver.url
     assert_equal @configuration[:user], @driver.user
@@ -22,7 +22,7 @@ class TestDriversBase < Test::Unit::TestCase
   end
 
   def test_initialize_with_config
-    @driver = R1::Drivers::Base.new(:aservice, @configuration)
+    @driver = Goldeneye::Drivers::Base.new(:aservice, @configuration)
 
     assert_equal "#{@configuration[:url]}/aservice?wsdl", @driver.url
     assert_equal @configuration[:user], @driver.user

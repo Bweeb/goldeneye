@@ -1,4 +1,4 @@
-module R1
+module Goldeneye
   class StorageDisk < Base
 
     def get_storage_disk_paths

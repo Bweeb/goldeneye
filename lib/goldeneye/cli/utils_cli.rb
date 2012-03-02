@@ -1,4 +1,4 @@
-module R1
+module Goldeneye
   class UtilsCli < BaseCli
 
     ONE_GB = 1073741824.0

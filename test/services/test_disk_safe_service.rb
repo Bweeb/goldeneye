@@ -3,7 +3,7 @@ require 'helper'
 class TestDiskSafeService < Test::Unit::TestCase
 
   def setup
-    @service = R1::DiskSafe.new
+    @service = Goldeneye::DiskSafe.new
   end
 
   def test_get_disk_safes_paths

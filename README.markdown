@@ -1,39 +1,39 @@
-R1 [![R1 Build Status][Build Icon]][Build Status]
+Goldeneye [![Goldeneye Build Status][Build Icon]][Build Status]
 ===========================================================
 
-R1 allows for easy interaction with the [R1Soft CDP API][].
+Goldeneye allows for easy interaction with the [R1Soft CDP API][].
 This library was first created for internal use at [Site5 LLC][].
 
-R1 has been tested on MRI 1.8.7, MRI 1.9.2, MRI 1.9.3 Preview 1,
+Goldeneye has been tested on MRI 1.8.7, MRI 1.9.2, MRI 1.9.3 Preview 1,
 Rubinius 2.0, and JRuby 1.6.2.
 
 [Site5 LLC]: http://www.site5.com
 [R1Soft CDP API]: http://wiki.r1soft.com/display/R1D/Documentation
-[Build Status]: http://travis-ci.org/site5/r1
-[Build Icon]: https://secure.travis-ci.org/site5/r1.png?branch=master
+[Build Status]: http://travis-ci.org/site5/goldeneye
+[Build Icon]: https://secure.travis-ci.org/site5/goldeneye.png?branch=master
 
 Basic Examples
 --------------
 
-    R1.config(
+    Goldeneye.config(
       :url        => "http://my.cdp.server:7080",
       :user       => "theusername",
       :password   => "thepassword"
-     )
+    )
 
-    cdp = R1::CDP.new
+    cdp = Goldeneye::CDP.new
     cdp.get_registered_cdps
 
 Command Line Usage
 ------------------
 
     Tasks:
-      r1 help [TASK]      # Describe available tasks or one specific task
-      r1 utils <command>  # Utils commands
-      r1 version          # Outputs the current program version
+      goldeneye help [TASK]      # Describe available tasks or one specific task
+      goldeneye utils <command>  # Utils commands
+      goldeneye version          # Outputs the current program version
 
-      r1 utils help [COMMAND]     # Describe subcommands or one specific subcommand
-      r1 utils list_cdps_devices  # Lists CDPs devices and its memory information
+      goldeneye utils help [COMMAND]     # Describe subcommands or one specific subcommand
+      goldeneye utils list_cdps_devices  # Lists CDPs devices and its memory information
 
     Options:
       -U, --api-username, [--api-username=API_USERNAME]  # API USERNAME; Required.
@@ -43,14 +43,14 @@ Command Line Usage
 
     To check the available options for a given action, you can execute the following command:
 
-        r1 utils help list_cdps_devices
+        goldeneye utils help list_cdps_devices
 
 Default Config for Command Line
 --------------------------------
 
-The command line utility, r1, will look for a .r1.yml file in ~/. You can specify some defaults.
+The command line utility, goldeneye, will look for a .goldeneye.yml file in ~/. You can specify some defaults.
 
-    ~/.r1.yml
+    ~/.goldeneye.yml
     username: theusername
     password: thepassword
     url: "http://my.cdp.server:7080" # URL to the API endpoint
@@ -65,12 +65,12 @@ Requirements
 Documentation
 -------------
 
-* http://r1.rubyforge.org/r1/
+* http://goldeneye.rubyforge.org/goldeneye/
 
 Installation
 ------------
 
-    gem install r1
+    gem install goldeneye
 
 Contributors
 ------------

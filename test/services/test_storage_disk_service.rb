@@ -3,7 +3,7 @@ require 'helper'
 class TestStorageDiskService < Test::Unit::TestCase
 
   def setup
-    @service = R1::StorageDisk.new
+    @service = Goldeneye::StorageDisk.new
   end
 
   def test_get_storage_disk_paths

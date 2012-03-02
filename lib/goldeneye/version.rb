@@ -1,3 +1,3 @@
-module R1
+module Goldeneye
   VERSION = "0.1.0.beta1"
 end

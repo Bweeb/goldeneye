@@ -1,12 +1,12 @@
 require "rubygems"
 require "logging"
 require "xmlsimple"
-require "r1/exceptions"
-require "r1/base"
-require "r1/drivers/base"
-require "r1/drivers/savon"
+require "goldeneye/exceptions"
+require "goldeneye/base"
+require "goldeneye/drivers/base"
+require "goldeneye/drivers/savon"
 
-module R1
+module Goldeneye
   class << self
     attr_accessor :url, :user, :password
     attr_reader :driver
@@ -19,7 +19,7 @@ module R1
     #
     # Example:
     #
-    #   R1.config(
+    #   Goldeneye.config(
     #     :url        => configuration[:url],
     #     :user       => configuration[:user],
     #     :password   => configuration[:password]
@@ -33,7 +33,7 @@ module R1
     # Gets or sets the logger.
     # Log level can be set like this:
     #
-    #    R1.logger.level = :info
+    #    Goldeneye.logger.level = :info
     def logger(output = nil)
       if output
         @logger = Logging.logger(output)
@@ -44,6 +44,6 @@ module R1
   end
 end
 
-require "r1/services/cdp"
-require "r1/services/storage_disk"
-require "r1/services/disk_safe"
+require "goldeneye/services/cdp"
+require "goldeneye/services/storage_disk"
+require "goldeneye/services/disk_safe"

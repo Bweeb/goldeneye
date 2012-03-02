@@ -26,10 +26,10 @@ end
 begin
   require 'rdoc/task'
   Rake::RDocTask.new do |rdoc|
-    version = R1::VERSION
+    version = Goldeneye::VERSION
 
     rdoc.rdoc_dir = 'rdoc'
-    rdoc.title = "R1 #{version}"
+    rdoc.title = "Goldeneye #{version}"
     rdoc.rdoc_files.include('README*')
     rdoc.rdoc_files.include('lib/**/*.rb')
   end
@@ -41,7 +41,7 @@ end
 
 desc "Open an irb session preloaded with this library"
 task :console do
-  sh "irb -rubygems -r ./lib/r1.rb"
+  sh "irb -rubygems -r ./lib/goldeneye.rb"
 end
 
 task :default => :test

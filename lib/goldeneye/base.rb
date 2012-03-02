@@ -1,9 +1,9 @@
-module R1
-  # R1::Base is the main class for mapping API resources as subclasses.
+module Goldeneye
+  # Goldeneye::Base is the main class for mapping API resources as subclasses.
   class Base
     class << self
       # Returns the service name. By default it is infered from the class name.
-      # E.g.: A "R1::Agent" class will have an "Agent" service
+      # E.g.: A "Goldeneye::Agent" class will have an "Agent" service
       def service
         name.split("::").last
       end
@@ -11,10 +11,10 @@ module R1
 
     attr_reader :driver
 
-    # Initializes the api using R1 default options or the received options.
-    # This accept the same options as R1.config.
+    # Initializes the api using Goldeneye default options or the received options.
+    # This accept the same options as Goldeneye.config.
     def initialize(options = {})
-      @driver = R1.driver.new(self.class.service, options)
+      @driver = Goldeneye.driver.new(self.class.service, options)
     end
 
     # Prepares and sends the API request to the configured server.
@@ -29,15 +29,15 @@ module R1
     # <tt>method</tt> - Specifies options that will be passed in to the API
     # <tt>force_array</tt> - see parse_response
     #
-    # If the remote procedure returned a fault-structure, then a R1::R1Error exception
+    # If the remote procedure returned a fault-structure, then a Goldeneye::GoldeneyeError exception
     # is raised.
     def perform_request(method, options = {}, force_array = false)
-      R1.logger.debug("R1 request for #{self.class.service}::#{method} with: #{options.to_s}")
+      Goldeneye.logger.debug("Goldeneye request for #{self.class.service}::#{method} with: #{options.to_s}")
 
       body     = driver.call(method, options)
       response = parse_response(method, body, force_array)
 
-      R1.logger.debug("R1 response: #{response.to_s}")
+      Goldeneye.logger.debug("Goldeneye response: #{response.to_s}")
 
       response
     end

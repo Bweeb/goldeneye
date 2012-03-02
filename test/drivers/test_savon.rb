@@ -16,13 +16,13 @@ class TestDriversSavon < Test::Unit::TestCase
 
     Savon::Client.stubs(:new).yields(@wsdl, @http).returns(@client)
 
-    @driver = R1::Drivers::Savon.new(:theservice, @configuration)
+    @driver = Goldeneye::Drivers::Savon.new(:theservice, @configuration)
   end
 
   def test_initialize
     @wsdl.expects(:document=).with("theurl/theservice?wsdl")
     @auth.expects(:basic).with(@configuration[:user], @configuration[:password])
-    @driver = R1::Drivers::Savon.new(:theservice, @configuration)
+    @driver = Goldeneye::Drivers::Savon.new(:theservice, @configuration)
 
     assert_equal @client, @driver.api
   end

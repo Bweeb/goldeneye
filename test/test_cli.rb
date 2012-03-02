@@ -1,5 +1,5 @@
 require 'helper'
-require 'r1/cli'
+require 'goldeneye/cli'
 
 class TestCli < Test::Unit::TestCase
 
@@ -10,8 +10,8 @@ class TestCli < Test::Unit::TestCase
   end
 
   def test_should_print_version
-    $stdout.expects(:puts).with(R1::VERSION)
-    R1::Cli.start(cli_expand_base_arguments(["version"]))
+    $stdout.expects(:puts).with(Goldeneye::VERSION)
+    Goldeneye::Cli.start(cli_expand_base_arguments(["version"]))
   end
 
 end

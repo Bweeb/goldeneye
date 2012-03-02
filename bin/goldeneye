@@ -3,6 +3,6 @@
 $:.unshift(File.join(File.dirname(__FILE__), "/../lib"))
 
 require "thor"
-require "r1/cli"
+require "goldeneye/cli"
 
-R1::Cli.start
+Goldeneye::Cli.start

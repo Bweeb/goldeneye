@@ -3,7 +3,7 @@ require 'helper'
 class TestCDPService < Test::Unit::TestCase
 
   def setup
-    @service = R1::CDP.new
+    @service = Goldeneye::CDP.new
   end
 
   def test_get_registered_cdps

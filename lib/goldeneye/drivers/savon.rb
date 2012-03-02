@@ -1,6 +1,6 @@
 require "savon"
 
-module R1
+module Goldeneye
   module Drivers
     class Savon < Base
       class << self
@@ -29,11 +29,11 @@ module R1
         begin
           api.request(method) do |soap|
             # Manually uses Gyoku to generate the body xml becase by default Savon appends the
-            # namespace to the parameters and that does not work with the R1 api
+            # namespace to the parameters and that does not work with the R1 CDP api
             soap.body = Gyoku.xml(args)
           end.to_xml
         rescue ::Savon::Error => e
-          raise R1Error.new(e)
+          raise Error.new(e)
         end
       end
     end

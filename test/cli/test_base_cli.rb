@@ -1,5 +1,5 @@
 require 'helper'
-require 'r1/cli'
+require 'goldeneye/cli'
 
 class TestBaseCli < Test::Unit::TestCase
 
@@ -8,8 +8,8 @@ class TestBaseCli < Test::Unit::TestCase
     # something was moved around.
     Mocha::Configuration.prevent(:stubbing_non_existent_method)
 
-    @base_cli = R1::BaseCli.new
-    @api      = R1::Base.new
+    @base_cli = Goldeneye::BaseCli.new
+    @api      = Goldeneye::Base.new
 
     @base_cli.stubs(:api).returns(@api)
   end

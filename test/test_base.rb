@@ -3,17 +3,17 @@ require 'helper'
 class TestBase < Test::Unit::TestCase
 
   def setup
-    @api = R1::Base.new
+    @api = Goldeneye::Base.new
   end
 
   def test_class_service
-    assert_equal "Base", R1::Base.service
+    assert_equal "Base", Goldeneye::Base.service
   end
 
   def test_initialize_with_default_options
-    R1::Drivers::Savon.expects(:new).with("Base", {:my => :option}).returns(:driver)
+    Goldeneye::Drivers::Savon.expects(:new).with("Base", {:my => :option}).returns(:driver)
 
-    assert_equal :driver, R1::Base.new({:my => :option}).driver
+    assert_equal :driver, Goldeneye::Base.new({:my => :option}).driver
   end
 
   def test_perform_request

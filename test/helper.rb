@@ -6,10 +6,10 @@ begin
 rescue LoadError
 end
 
-require 'r1'
+require 'goldeneye'
 require 'mocha'
 
-R1.logger.level = :info
+Goldeneye.logger.level = :info
 
 class Test::Unit::TestCase
 
