@@ -14,7 +14,7 @@ R1.logger.level = :info
 class Test::Unit::TestCase
 
   def cli_expand_base_arguments(options)
-    arguments = []
+    arguments = ["--api-username", "thelogin", "--api-password", "thekey", "--api-url", "theurl"]
     options + arguments
   end
 

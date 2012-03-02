@@ -3,7 +3,7 @@ module R1
 
     # Retrieve a list of Data Center Console (DCC) registered CDP Servers.
     def get_registered_cdps
-      perform_request("getRegisteredCDPS", {}, "return")
+      perform_request("getRegisteredCDPS", {}, "return") || []
     end
 
   end
