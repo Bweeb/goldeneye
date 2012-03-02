@@ -18,12 +18,12 @@ class TestUtilsCli < Test::Unit::TestCase
       { "name" => "cdp2", "ipHost" => "ip2", "apiPort" => "port2" }
     ]
 
-    disk_safe_1 = [{ "deviceList" => [
+    disk_safe_1 = [{ "description" => "ds1", "deviceList" => [
       {"devicePath" => "/cdp1/dev1", "totalBlocks" => "10000000", "allocatedBlocks" => "5000000", "blockSize" => "1000"},
       {"devicePath" => "/cdp1/dev2", "totalBlocks" => "100000000", "allocatedBlocks" => "2500000", "blockSize" => "2000"}
     ]}]
 
-    disk_safe_2 = [{ "deviceList" => [
+    disk_safe_2 = [{ "description" => "ds2", "deviceList" => [
       {"devicePath" => "/cdp2/dev1", "totalBlocks" => "10000000", "allocatedBlocks" => "5000000", "blockSize" => "1000"}
     ]}]
 
@@ -36,9 +36,11 @@ class TestUtilsCli < Test::Unit::TestCase
     @cdp_api.expects(:get_registered_cdps).returns(cdps)
 
     $stdout.expects(:puts).with("CDP cdp1:")
+    $stdout.expects(:puts).with("  DiskSafe ds1:")
     $stdout.expects(:puts).with("    /cdp1/dev1: 4.7 GB")
     $stdout.expects(:puts).with("    /cdp1/dev2: 181.6 GB")
     $stdout.expects(:puts).with("CDP cdp2:")
+    $stdout.expects(:puts).with("  DiskSafe ds2:")
     $stdout.expects(:puts).with("    /cdp2/dev1: 4.7 GB")
 
     R1::Cli.start(cli_expand_base_arguments([
