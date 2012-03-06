@@ -33,7 +33,7 @@ Command Line Usage
       goldeneye version          # Outputs the current program version
 
       goldeneye utils help [COMMAND]     # Describe subcommands or one specific subcommand
-      goldeneye utils list_cdps_devices  # Lists CDPs devices and its memory information
+      goldeneye utils storage_disks      # Lists storage disks and its memory information
 
     Options:
       -U, --api-username, [--api-username=API_USERNAME]  # API USERNAME; Required.
@@ -43,7 +43,7 @@ Command Line Usage
 
     To check the available options for a given action, you can execute the following command:
 
-        goldeneye utils help list_cdps_devices
+        goldeneye utils help storage_disks
 
 Default Config for Command Line
 --------------------------------

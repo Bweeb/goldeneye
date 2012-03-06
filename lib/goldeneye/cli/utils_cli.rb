@@ -3,24 +3,21 @@ module Goldeneye
 
     ONE_GB = 1073741824.0
 
-    desc "list_cdps_devices", "Lists CDPs devices and its memory information"
-    def list_cdps_devices
+    desc "storage_disks", "Lists storage disks and its memory information"
+    def storage_disks
       cdps = cdp_api.get_registered_cdps.sort{|cdp1, cdp2| cdp1["name"] <=> cdp2["name"]}.uniq
 
       cdps.each do |cdp|
         output "CDP #{cdp["name"]}:"
 
-        disk_safes = DiskSafe.new(:url => "http://#{cdp["ipHost"]}:#{cdp["apiPort"]}").
-                              get_disk_safes.sort{|ds1, ds2| ds1["description"] <=> ds2["description"]}.
-                              uniq
+        storage_disk_api = StorageDisk.new(:url => "http://#{cdp["ipHost"]}:#{cdp["apiPort"]}")
+        storage_disk_api.get_storage_disk_paths.delete_if{|path| path.nil? || path == "none"}.each do |path|
+          disk = storage_disk_api.get_storage_disk_by_path(path)
 
-        disk_safes.each do |disk_safe|
-          output "  DiskSafe #{disk_safe["description"]}:"
-          disk_safe["deviceList"].sort{|dev1, dev2| dev1["devicePath"] <=> dev2["devicePath"]}.each do |device|
-            free_space = (device["totalBlocks"].to_i - device["allocatedBlocks"].to_i) * device["blockSize"].to_i
-            free_space = ((free_space / ONE_GB) * 10).round.to_f / 10 # Ruby 1.8 compatible round
-            output "    #{device["devicePath"]}: #{free_space} GB"
-          end
+          output "  #{path}:"
+          output "    Capacity: #{disk["capacityBytes"]}"
+          output "    Free: #{disk["freeBytes"]}"
+          output "    Usage: #{disk["usageBytes"]}"
         end
       end
     end
